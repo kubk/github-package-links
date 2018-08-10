@@ -1,0 +1,45 @@
+{
+  "name": "github-package-links",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^21.1.8",
+    "@types/jquery": "^3.2.16",
+    "awesome-typescript-loader": "^3.3.0",
+    "jest": "^21.2.1",
+    "jsdom": "^11.5.1",
+    "source-map-loader": "^0.2.3",
+    "ts-jest": "^21.2.4",
+    "typescript": "^2.6.1",
+    "webpack": "^3.8.1"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1"
+  },
+  "scripts": {
+    "webpack": "webpack -p --display-error-details",
+    "watch": "webpack --watch",
+    "test-watch": "jest --watch",
+    "test": "jest"
+  },
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "skipBabel": true
+      }
+    },
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "/test/.*\\.test\\.ts$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  }
+}
