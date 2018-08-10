@@ -11,6 +11,7 @@
     "jsdom": "^11.5.1",
     "source-map-loader": "^0.2.3",
     "ts-jest": "^21.2.4",
+    "tslint": "^5.11.0",
     "typescript": "^2.6.1",
     "webpack": "^3.8.1"
   },
@@ -20,6 +21,8 @@
   "scripts": {
     "webpack": "webpack -p --display-error-details",
     "watch": "webpack --watch",
+    "tslint": "./node_modules/.bin/tslint -t stylish --project tsconfig.json",
+    "static-analysis": "./node_modules/.bin/tsc -p tsconfig.json --noEmit",
     "test-watch": "jest --watch",
     "test": "jest"
   },

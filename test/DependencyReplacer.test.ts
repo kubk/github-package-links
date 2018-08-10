@@ -1,42 +1,41 @@
 import DependencyReplacer from '../src/DependencyReplacer'
-import Composer from '../src/PackageManager/Composer'
-import Pip from '../src/PackageManager/Pip'
-import Npm from '../src/PackageManager/Npm'
-import RubyGems from '../src/PackageManager/RubyGems'
-const { JSDOM } = require('jsdom')
-const fs = require('fs')
+import Composer from '../src/Composer'
+import Pip from '../src/Pip'
+import Npm from '../src/Npm'
+import RubyGems from '../src/RubyGems'
+import IPackageManager from "../src/IPackageManager";
+const { JSDOM } = require('jsdom');
+const fs = require('fs');
 
 describe('DependencyReplacer', () => {
-    const composer = new Composer()
-    const npm = new Npm()
-    const pip = new Pip()
-    const rubyGems = new RubyGems()
+    const composer = new Composer();
+    const npm = new Npm();
+    const pip = new Pip();
+    const rubyGems = new RubyGems();
 
-    const dependencyReplacer = new DependencyReplacer([composer, npm, pip, rubyGems])
+    const dependencyReplacer = new DependencyReplacer([composer, npm, pip, rubyGems]);
 
     getTestData().forEach(([ packageManagerName, pathToHtml, pageUrl, validPackages, invalidPackages ]) => {
 
         it(`replaces all ${packageManagerName} packages`, () => {
-            const dependencyFileNode = getDependencyFileNode(pathToHtml)
-            const packageManager = { composer, npm, pip, rubyGems }[packageManagerName]
-
-            dependencyReplacer.replace(dependencyFileNode, pageUrl)
+            const dependencyFileNode = getDependencyFileNode(pathToHtml);
+            const packageManager: IPackageManager = { composer, npm, pip, rubyGems }[packageManagerName];
+            dependencyReplacer.replace(dependencyFileNode, pageUrl);
 
             validPackages.forEach(packageName => {
-                expect(dependencyFileNode.innerHTML).toContain(packageManager.linkToPackage(packageName))
-            })
+                expect(dependencyFileNode.innerHTML).toContain(packageManager.generatePackageLink(packageName))
+            });
 
             invalidPackages.forEach(packageName => {
-                expect(dependencyFileNode.innerHTML).not.toContain(packageManager.linkToPackage(packageName))
-            })
+                expect(dependencyFileNode.innerHTML).not.toContain(packageManager.generatePackageLink(packageName))
+            });
         })
 
     })
-})
+});
 
-function getDependencyFileNode(relativePath) {
-    const html = fs.readFileSync(__dirname + relativePath).toString()
-
+function getDependencyFileNode(relativePath: string) {
+    const html = fs.readFileSync(__dirname + relativePath).toString();
     const dom = new JSDOM(html);
 
     return dom.window.document.querySelector('div.file')

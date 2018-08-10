@@ -6,4 +6,6 @@ before_script:
   - yarn install
 
 script:
-- yarn test
+  - yarn tslint
+  - yarn static-analysis
+  - yarn test

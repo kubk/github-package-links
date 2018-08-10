@@ -1,0 +1,29 @@
+{
+  "extends": ["./node_modules/tslint/lib/configs/recommended"],
+  "rules": {
+    "mocha-no-side-effect-code": false,
+    "missing-jsdoc": false,
+    "no-relative-imports": false,
+    "export-name": false,
+    "quotemark": false,
+    "promise-function-async": false,
+    "no-void-expression": false,
+    "no-redundant-jsdoc": false,
+    "prefer-type-cast": false,
+    "ordered-imports": false,
+    "trailing-comma": [ // https://palantir.github.io/tslint/rules/trailing-comma/
+      true,
+      {
+        "multiline": "always",
+        "singleline": "never"
+      }
+    ],
+    "typedef": [
+      true,
+      "parameter",
+      "arrow-parameter",
+      "property-declaration",
+      "member-variable-declaration"
+    ]
+  }
+}
