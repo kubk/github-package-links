@@ -1,4 +1,5 @@
 language: node_js
+
 node_js:
   - '9'
 
@@ -6,6 +7,14 @@ before_script:
   - yarn install
 
 script:
-  - yarn tslint
+  - yarn lint
   - yarn static-analysis
   - yarn test
+
+
+cache:
+  directories:
+  - 'node_modules'
+
+notifications:
+  email: false

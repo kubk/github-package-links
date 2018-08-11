@@ -5,7 +5,11 @@ export default class DependencyReplacer {
     constructor(private packageManagers: IPackageManager[]) {}
 
     public replace(fileNode: Element, pageUrl: string): void {
-        const packageManager = this.getPackageManager(pageUrl);
+        const packageManager = this.packageManagers.find((_: IPackageManager) => _.matchesPageUrl(pageUrl));
+        if (!packageManager) {
+            return;
+        }
+
         const linesWithDependencies = packageManager.filterPackages(fileNode);
 
         linesWithDependencies.forEach((line: Element) => {
@@ -25,16 +29,12 @@ export default class DependencyReplacer {
         });
     }
 
-    private getPackageManager(pageUrl: string): IPackageManager {
-        const packageManager = this.packageManagers.find((_: IPackageManager) => _.matchesPageUrl(pageUrl));
-        if (!packageManager) {
-            throw new Error();
-        }
-
-        return packageManager;
-    }
-
     private buildLinkHtml(packageLink: string, packageName: string): string {
-        return $('<a>', { href: packageLink, target: '_blank', text: packageName })[0].outerHTML;
+        const a = document.createElement('a');
+        a.setAttribute('href', packageLink);
+        a.setAttribute('target', '_blank');
+        a.innerText = packageName;
+
+        return a.outerHTML;
     }
 }

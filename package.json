@@ -13,16 +13,20 @@
     "ts-jest": "^21.2.4",
     "tslint": "^5.11.0",
     "typescript": "^2.6.1",
-    "webpack": "^3.8.1"
+    "uglifyjs-webpack-plugin": "^1.2.7",
+    "webpack": "^3.8.1",
+    "wrapper-webpack-plugin": "1"
   },
   "dependencies": {
     "jquery": "^3.2.1"
   },
   "scripts": {
-    "webpack": "webpack -p --display-error-details",
-    "watch": "webpack --watch",
-    "tslint": "./node_modules/.bin/tslint -t stylish --project tsconfig.json",
+    "build-dev": "webpack -p --display-error-details --env.NODE_ENV=dev",
+    "build-prod": "webpack -p --display-error-details --env.NODE_ENV=prod",
+    "watch": "webpack --watch --env.NODE_ENV=dev",
+    "lint": "./node_modules/.bin/tslint -t stylish --project tsconfig.json",
     "static-analysis": "./node_modules/.bin/tsc -p tsconfig.json --noEmit",
+    "build-userscript": "cat userscript-header.txt dist/bundle.js > dist/userscript.js && echo 'File userscript.js created'",
     "test-watch": "jest --watch",
     "test": "jest"
   },

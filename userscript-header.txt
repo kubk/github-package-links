@@ -1,0 +1,11 @@
+// ==UserScript==
+// @name GitHub package links
+// @description A userscript that generates links for packages in dependency files like package.json, composer.json, Gemfile on GitHub.
+// @namespace https://github.com/kubk
+// @author https://github.com/kubk
+// @homepage https://github.com/kubk/github-package-links
+// @version 0.1
+// @grant none
+// @match https://github.com/*
+// ==/UserScript==
+

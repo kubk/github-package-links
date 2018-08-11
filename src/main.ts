@@ -12,4 +12,21 @@ const dependencyReplacer = new DependencyReplacer([
     new Pip(),
 ]);
 
-dependencyReplacer.replace($('.file')[0], window.location.href);
+type waitForElementHandler = (el: JQuery<HTMLElement>) => void;
+
+const waitForElement = (selector: string, callback: waitForElementHandler) => {
+    const $element = $(selector);
+    if ($element.length) {
+        callback($element);
+    } else {
+        setTimeout(() => {
+            waitForElement(selector, callback);
+        }, 100);
+    }
+};
+
+$(document.body).on('click', '.js-navigation-open', () => {
+    waitForElement('.file', ($element: JQuery<HTMLElement>) => {
+        dependencyReplacer.replace($element[0], window.location.href);
+    });
+});
