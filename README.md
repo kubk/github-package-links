@@ -1,7 +1,10 @@
 # github-package-links [![Build Status](https://travis-ci.org/kubk/github-package-links.svg?branch=master)](https://travis-ci.org/kubk/github-package-links)
 
-A userscript that generates links for packages in dependency files like package.json, composer.json, Gemfile on GitHub.
-Supported files:
+A userscript that generates links for packages in dependency files like package.json, composer.json, Gemfile on GitHub. Inspired by GitLab.
+
+<img src="https://github.com/kubk/github-package-links/raw/master/dist/1s.png" width="380" height="304" hspace="30"> <img src="https://github.com/kubk/github-package-links/raw/master/dist/2s.png" width="380" height="304">
+
+### Supported files
 - `package.json` / `bower.json` (JavaScript)
 - `composer.json` (PHP)
 - `Gemfile` / `gems.rb` (Ruby)
@@ -13,6 +16,8 @@ Supported files:
 3. Use `cat userscript-header.txt dist/bundle.js > userscript.js` to build the userscript
 
 ### Browser support
+- Google Chrome 64+
+- Firefox 60+
 
 ### Tests
 Run `yarn test`
