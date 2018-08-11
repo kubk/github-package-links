@@ -25,6 +25,11 @@ const waitForElement = (selector: string, callback: waitForElementHandler) => {
     }
 };
 
+const $file = $('.file');
+if ($file.length) {
+    dependencyReplacer.replace($file[0], window.location.href);
+}
+
 $(document.body).on('click', '.js-navigation-open', () => {
     waitForElement('.file', ($element: JQuery<HTMLElement>) => {
         dependencyReplacer.replace($element[0], window.location.href);
