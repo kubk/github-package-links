@@ -10,10 +10,15 @@ A userscript that generates links for packages in dependency files like package.
 - `Gemfile` / `gems.rb` (Ruby)
 - `requirements.txt` (Python)
 
+### Requirements
+- [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en) for Google Chrome or [GreaseMonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) for Firefox
+
 ### Installation
-1. Install [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en) for Google Chrome or [GreaseMonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) for Firefox
-2. Build prod bundle: `yarn build-prod`
-3. Use `cat userscript-header.txt dist/bundle.js > userscript.js` to build the userscript
+- Click [here](https://github.com/kubk/github-package-links/raw/build/dist/script.user.js)
+
+### Manual installation
+1. Build prod bundle: `yarn build-prod`
+2. Use `cat userscript-header.txt dist/bundle.js > script.user.js` to build the userscript
 
 ### Browser support
 - Google Chrome 64+
