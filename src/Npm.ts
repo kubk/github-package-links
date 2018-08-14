@@ -3,6 +3,10 @@ import * as $ from 'jquery';
 
 export default class Npm implements IPackageManager {
     public generatePackageLink(packageName: string): string | null {
+        if (packageName === 'devDependencies') {
+            return null;
+        }
+
         return 'https://www.npmjs.com/package/' + packageName;
     }
 
