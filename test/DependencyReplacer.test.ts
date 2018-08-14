@@ -81,6 +81,30 @@ function getTestData() {
                 'lint',
                 'test'
             ]
+        ],
+        [
+            'npm',
+            '/fixtures/atari2600.js_package.json.html',
+            'https://github.com/star-collector/atari2600.js/blob/master/package.json',
+            [
+                "@types/chai",
+                "@types/karma",
+                "@types/mocha",
+                "chai",
+                "karma",
+                "karma-chai",
+                "karma-chrome-launcher",
+                "karma-mocha",
+                "karma-webpack",
+                "mocha",
+                "ts-loader",
+                "typescript",
+                "webpack",
+                "webpack-cli",
+            ],
+            [
+                'devDependencies',
+            ]
         ]
     ]
 }
