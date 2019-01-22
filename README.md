@@ -1,4 +1,4 @@
-# github-package-links [![Build Status](https://travis-ci.org/kubk/github-package-links.svg?branch=master)](https://travis-ci.org/kubk/github-package-links)
+# github-package-links [![Build Status](https://travis-ci.org/kubk/github-package-links.svg?branch=master)](https://travis-ci.org/kubk/github-package-links)  [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 A userscript that generates links for packages in dependency files like package.json, composer.json, Gemfile on GitHub. Inspired by GitLab.
 
@@ -17,12 +17,12 @@ A userscript that generates links for packages in dependency files like package.
 - Click [here](https://github.com/kubk/github-package-links/raw/build/dist/script.user.js)
 
 ### Manual installation
-1. Build prod bundle: `yarn build-prod`
-2. Use `cat userscript-header.txt dist/bundle.js > script.user.js` to build the userscript
+1. Build JavaScript bundle: `webpack -p --env.NODE_ENV=prod`
+2. Build userscript: `cat userscript-header.txt dist/bundle.js > script.user.js`
 
 ### Browser support
 - Google Chrome 64+
 - Firefox 60+
 
 ### Tests
-Run `yarn test`
+Run `npm run test`

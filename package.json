@@ -13,6 +13,7 @@
     "ts-jest": "^21.2.4",
     "tslint": "^5.11.0",
     "typescript": "^2.6.1",
+    "prettier": "^1.16.1",
     "uglifyjs-webpack-plugin": "^1.2.7",
     "webpack": "^3.8.1",
     "wrapper-webpack-plugin": "1"
@@ -28,6 +29,7 @@
     "static-analysis": "./node_modules/.bin/tsc -p tsconfig.json --noEmit",
     "build-userscript": "cat userscript-header.txt dist/bundle.js > dist/userscript.js && echo 'File userscript.js created'",
     "test-watch": "jest --watch",
+    "cs": "./node_modules/.bin/prettier src/**/*.ts --write --single-quote",
     "test": "jest"
   },
   "jest": {
@@ -42,9 +44,7 @@
     "testRegex": "/test/.*\\.test\\.ts$",
     "moduleFileExtensions": [
       "ts",
-      "tsx",
       "js",
-      "jsx",
       "json",
       "node"
     ]
