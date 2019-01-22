@@ -1,21 +1,24 @@
-import IPackageManager from './IPackageManager';
+import { PackageManager } from './PackageManager';
 import * as $ from 'jquery';
 
-export default class Composer implements IPackageManager {
-    public generatePackageLink(packageName: string): string | null {
-        // Exclude PHP extensions such as 'ext-json'
-        if (packageName.search('/') === -1) {
-            return null;
-        }
-
-        return 'https://packagist.org/packages/' + packageName;
+export class Composer implements PackageManager {
+  generatePackageLink(packageName: string): string | null {
+    // Exclude PHP extensions such as 'ext-json'
+    if (packageName.search('/') === -1) {
+      return null;
     }
 
-    public matchesPageUrl(url: string): boolean {
-        return url.endsWith('composer.json');
-    }
+    return 'https://packagist.org/packages/' + packageName;
+  }
 
-    public filterPackages(fileNode: Element): Element[] {
-        return $(fileNode).find('tr:contains("require")').nextUntil('tr:contains("}")').toArray();
-    }
+  matchesPageUrl(url: string): boolean {
+    return url.endsWith('composer.json');
+  }
+
+  filterPackages(fileNode: Element): Element[] {
+    return $(fileNode)
+      .find('tr:contains("require")')
+      .nextUntil('tr:contains("}")')
+      .toArray();
+  }
 }

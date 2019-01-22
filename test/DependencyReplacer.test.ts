@@ -1,9 +1,9 @@
-import DependencyReplacer from '../src/DependencyReplacer'
-import Composer from '../src/Composer'
-import Pip from '../src/Pip'
-import Npm from '../src/Npm'
-import RubyGems from '../src/RubyGems'
-import IPackageManager from "../src/IPackageManager";
+import {DependencyReplacer }from '../src/DependencyReplacer'
+import {Composer} from '../src/Composer'
+import {Pip} from '../src/Pip'
+import {Npm} from '../src/Npm'
+import {RubyGems} from '../src/RubyGems'
+import {PackageManager} from "../src/PackageManager";
 const { JSDOM } = require('jsdom');
 const fs = require('fs');
 
@@ -19,7 +19,7 @@ describe('DependencyReplacer', () => {
 
         it(`replaces all ${packageManagerName} packages`, () => {
             const dependencyFileNode = getDependencyFileNode(pathToHtml);
-            const packageManager: IPackageManager = { composer, npm, pip, rubyGems }[packageManagerName];
+            const packageManager: PackageManager = { composer, npm, pip, rubyGems }[packageManagerName];
             dependencyReplacer.replace(dependencyFileNode, pageUrl);
 
             validPackages.forEach(packageName => {
