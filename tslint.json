@@ -13,6 +13,7 @@
     "no-redundant-jsdoc": false,
     "prefer-type-cast": false,
     "interface-name": false,
+    "arrow-parens": false,
     "ordered-imports": false,
     "trailing-comma": [ // https://palantir.github.io/tslint/rules/trailing-comma/
       true,
@@ -23,7 +24,6 @@
     "typedef": [
       true,
       "parameter",
-      "arrow-parameter",
       "property-declaration",
       "member-variable-declaration"
     ]

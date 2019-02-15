@@ -13,12 +13,12 @@ A userscript that generates links for packages in dependency files like package.
 ### Requirements
 - [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en) for Google Chrome or [GreaseMonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) for Firefox
 
-### Installation
+### Quick installation
 - Click [here](https://github.com/kubk/github-package-links/raw/build/dist/script.user.js)
 
 ### Manual installation
 1. Build JavaScript bundle: `webpack -p --env.NODE_ENV=prod`
-2. Build userscript: `cat userscript-header.txt dist/bundle.js > script.user.js`
+2. Generate userscript: `cat userscript-header.txt dist/bundle.js > script.user.js`
 
 ### Browser support
 - Google Chrome 64+

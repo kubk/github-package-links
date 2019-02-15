@@ -1,5 +1,1 @@
-export interface PackageManager {
-  generatePackageLink(packageName: string): string | null;
-  filterPackages(fileNode: Element): Element[];
-  matchesPageUrl(url: string): boolean;
-}
+export type PackageManager = 'npm' | 'composer' | 'pip' | 'rubyGems';

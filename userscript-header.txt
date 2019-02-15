@@ -4,7 +4,7 @@
 // @namespace https://github.com/kubk
 // @author https://github.com/kubk
 // @homepage https://github.com/kubk/github-package-links
-// @version 0.1
+// @version 1.0
 // @grant none
 // @match https://github.com/*
 // ==/UserScript==
