@@ -4,7 +4,7 @@ export const waitForElement = (
   callback: (element: Element) => void
 ) => {
   if (attempt > 10) {
-    return; // 'Too long, give up'
+    return; // Too long, give up
   }
   const element = document.querySelector(selector);
   if (element) {

@@ -9,9 +9,9 @@ if (file) {
 document.body.addEventListener('click', event => {
   if (
     event.target &&
-    (<HTMLElement>event.target).classList.contains('js-navigation-open')
+    (event.target as HTMLElement).classList.contains('js-navigation-open')
   ) {
-    let attempt = 0;
+    const attempt = 0;
     waitForElement('.file', attempt, element => {
       replaceDependencies(element, window.location.href);
     });
