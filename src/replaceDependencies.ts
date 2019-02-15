@@ -15,8 +15,7 @@ export const replaceDependencies = (fileNode: Element, pageUrl: string) => {
       packageNameWithQuotes = line.querySelector('.blob-code-inner');
     }
     if (!packageNameWithQuotes || !packageNameWithQuotes.textContent) {
-      // TODO: replace with 'return;'
-      throw new Error('Should not be reached');
+      return;
     }
 
     const packageName = packageNameWithQuotes.textContent.replace(/["']/g, '');

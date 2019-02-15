@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "@types/jest": "^21.1.8",
+    "@types/jest": "^24.0.5",
     "@types/jquery": "^3.2.16",
     "@types/jsdom": "^12.2.2",
     "@types/node": "^11.9.4",
@@ -21,9 +21,7 @@
     "webpack-cli": "^3.2.3",
     "wrapper-webpack-plugin": "1"
   },
-  "dependencies": {
-    "jquery": "^3.2.1"
-  },
+  "dependencies": {},
   "scripts": {
     "build-dev": "webpack -p --display-error-details --env.NODE_ENV=dev",
     "build-prod": "webpack -p --display-error-details --env.NODE_ENV=prod",
@@ -31,7 +29,7 @@
     "lint": "./node_modules/.bin/tslint -t stylish --project tsconfig.json",
     "static-analysis": "./node_modules/.bin/tsc -p tsconfig.json --noEmit",
     "sa": "./node_modules/.bin/tsc -p tsconfig.json --noEmit",
-    "build-userscript": "cat userscript-header.txt dist/bundle.js > dist/userscript.js && echo 'File userscript.js created'",
+    "build-userscript": "cat userscript-header.txt dist/bundle.js > dist/script.user.js && echo 'File userscript.js created'",
     "test-watch": "jest --watch",
     "cs": "./node_modules/.bin/prettier src/**/*.ts --write --single-quote",
     "test": "jest"
