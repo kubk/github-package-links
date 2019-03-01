@@ -6,7 +6,7 @@ export const generatePackageLink = (
 ): string | null => {
   switch (packageManager) {
     case 'npm':
-      return packageName === 'devDependencies'
+      return packageName === 'devDependencies' || packageName === 'dependencies'
         ? null
         : 'https://www.npmjs.com/package/' + packageName;
 
