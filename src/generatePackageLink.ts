@@ -6,19 +6,25 @@ export const generatePackageLink = (
 ): string | null => {
   switch (packageManager) {
     case 'npm':
-      return packageName === 'devDependencies' || packageName === 'dependencies'
-        ? null
-        : 'https://www.npmjs.com/package/' + packageName;
+      const reservedKeys = [
+        'devDependencies',
+        'dependencies',
+        'peerDependencies'
+      ];
+      if (reservedKeys.includes(packageName)) {
+        return null;
+      }
+      return `https://www.npmjs.com/package/${packageName}`;
 
     case 'composer':
       // Exclude PHP extensions such as 'ext-json'
       return packageName.includes('/')
-        ? 'https://packagist.org/packages/' + packageName
+        ? `https://packagist.org/packages/${packageName}`
         : null;
 
     case 'rubyGems':
       return packageName.length > 0
-        ? 'https://rubygems.org/gems/' + packageName
+        ? `https://rubygems.org/gems/${packageName}`
         : null;
 
     case 'pip':
@@ -29,6 +35,6 @@ export const generatePackageLink = (
       if (!shortPackageNames) {
         return null;
       }
-      return 'https://pypi.python.org/pypi/' + shortPackageNames[0];
+      return `https://pypi.python.org/pypi/${shortPackageNames[0]}`;
   }
 };

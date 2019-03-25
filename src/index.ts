@@ -1,18 +1,17 @@
 import { replaceDependencies } from './replaceDependencies';
 import { waitForElement } from './waitForElement';
 
-const file = document.querySelector('.file');
+const packageSelector = '.highlight.tab-size';
+const file = document.querySelector(packageSelector);
 if (file) {
   replaceDependencies(file, window.location.href);
 }
 
 document.body.addEventListener('click', event => {
-  if (
-    event.target &&
-    (event.target as HTMLElement).classList.contains('js-navigation-open')
-  ) {
+  const target = event.target as HTMLElement | null;
+  if (target && target.classList.contains('js-navigation-open')) {
     const attempt = 0;
-    waitForElement('.file', attempt, element => {
+    waitForElement(packageSelector, attempt, element => {
       replaceDependencies(element, window.location.href);
     });
   }

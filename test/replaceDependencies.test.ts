@@ -120,7 +120,7 @@ const testCases: TestCase[] = [
 const getHtmlFileNode = (relativePath: string) => {
   const html = fs.readFileSync(__dirname + relativePath).toString();
   const dom = new JSDOM(html);
-  const fileNode = dom.window.document.querySelector('div.file');
+  const fileNode = dom.window.document.querySelector('.highlight.tab-size');
   if (!fileNode) {
     throw new Error('File node not found');
   }
