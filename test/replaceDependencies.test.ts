@@ -1,21 +1,21 @@
 import { JSDOM } from 'jsdom';
 import * as fs from 'fs';
-import { PackageManager } from '../src/PackageManager';
-import { replaceDependencies } from '../src/replaceDependencies';
-import { generatePackageLink } from '../src/generatePackageLink';
+import { PackageManager } from '../src/package-manager';
+import { replaceDependencies } from '../src/replace-dependencies';
+import { generatePackageLink } from '../src/generate-package-link';
 
-type TestCase = {
+interface TestCase {
   packageManagerName: PackageManager;
   pathToHtml: string;
   pageUrl: string;
   validPackages: string[];
   invalidPackages: string[];
-};
+}
 
 const testCases: TestCase[] = [
   {
-    packageManagerName: 'composer',
-    pathToHtml: '/fixtures/symfony_composer.json.html',
+    packageManagerName: PackageManager.Composer,
+    pathToHtml: __dirname + '/fixtures/symfony_composer.json.html',
     pageUrl: 'https://github.com/symfony/symfony/blob/master/composer.json',
     validPackages: [
       'doctrine/common',
@@ -33,8 +33,8 @@ const testCases: TestCase[] = [
     invalidPackages: ['php', 'ext-xml']
   },
   {
-    packageManagerName: 'npm',
-    pathToHtml: '/fixtures/react-draggable_package.json.html',
+    packageManagerName: PackageManager.Npm,
+    pathToHtml: __dirname + '/fixtures/react-draggable_package.json.html',
     pageUrl: 'https://github.com/mzabriskie/react-draggable/blob/master/package.json',
     validPackages: [
       'classnames',
@@ -47,8 +47,8 @@ const testCases: TestCase[] = [
     invalidPackages: ['lint', 'test']
   },
   {
-    packageManagerName: 'npm',
-    pathToHtml: '/fixtures/atari2600.js_package.json.html',
+    packageManagerName: PackageManager.Npm,
+    pathToHtml: __dirname + '/fixtures/atari2600.js_package.json.html',
     pageUrl: 'https://github.com/star-collector/atari2600.js/blob/master/package.json',
     validPackages: [
       '@types/chai',
@@ -69,21 +69,20 @@ const testCases: TestCase[] = [
     invalidPackages: ['devDependencies']
   },
   {
-    packageManagerName: 'pip',
-    pathToHtml: '/fixtures/flask_requirements.txt.html',
-    pageUrl: 'https://github.com/pallets/flask/blob/master/docs/requirements.txt',
+    packageManagerName: PackageManager.Pip,
+    pathToHtml: __dirname + '/fixtures/flask_requirements.txt.html',
+    pageUrl:
+      'https://github.com/pallets/flask/blob/master/docs/requirements.txt',
     validPackages: [
       'Sphinx~=1.8.0',
       'Pallets-Sphinx-Themes~=1.1.0',
       'sphinxcontrib-log-cabinet~=1.0.0'
     ],
-    invalidPackages: [
-      'test',
-    ]
+    invalidPackages: ['test']
   },
   {
-    packageManagerName: 'rubyGems',
-    pathToHtml: '/fixtures/sinatra_Gemfile.html',
+    packageManagerName: PackageManager.RubyGems,
+    pathToHtml: __dirname + '/fixtures/sinatra_Gemfile.html',
     pageUrl: 'https://github.com/sinatra/sinatra/blob/master/Gemfile',
     validPackages: [
       'rake',
@@ -97,7 +96,7 @@ const testCases: TestCase[] = [
       'simplecov',
       'sass',
       'twitter-text',
-      'rubysl-test-unit',
+      'rubysl-test-unit'
     ],
     invalidPackages: [
       'path',
@@ -112,13 +111,24 @@ const testCases: TestCase[] = [
       '1.14.7',
       'source',
       'gemspec',
-      'unless',
+      'unless'
     ]
+  },
+  {
+    packageManagerName: PackageManager.Gopkg,
+    pathToHtml: __dirname + '/fixtures/example_Gopkg.toml.html',
+    invalidPackages: ['version', 'constraint'],
+    validPackages: [
+      'github.com/spf13/cobra',
+      'github.com/spf13/viper',
+      'github.com/go-telegram-bot-api/telegram-bot-api'
+    ],
+    pageUrl: 'https://github.com/makasim/telegram-bot-cli/blob/master/Gopkg.toml'
   }
 ];
 
-const getHtmlFileNode = (relativePath: string) => {
-  const html = fs.readFileSync(__dirname + relativePath).toString();
+const getHtmlFileNode = (path: string) => {
+  const html = fs.readFileSync(path).toString();
   const dom = new JSDOM(html);
   const fileNode = dom.window.document.querySelector('.highlight.tab-size');
   if (!fileNode) {

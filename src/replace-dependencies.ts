@@ -1,6 +1,6 @@
-import { findPackageManager } from './findPackageManager';
-import { filterPackages } from './filterPackages';
-import { generatePackageLink } from './generatePackageLink';
+import { findPackageManager } from './find-package-manager';
+import { filterPackages } from './filter-packages';
+import { generatePackageLink } from './generate-package-link';
 
 export const replaceDependencies = (fileNode: Element, pageUrl: string) => {
   const packageManager = findPackageManager(pageUrl);
@@ -18,7 +18,10 @@ export const replaceDependencies = (fileNode: Element, pageUrl: string) => {
       return;
     }
 
-    const packageName = packageNameWithQuotes.textContent.replace(/["']/g, '');
+    let packageName = packageNameWithQuotes.textContent.replace(/["']/g, '');
+    if (packageName.includes('name = ')) {
+      packageName = packageName.replace('name = ', '').replace(/\s+/, '');
+    }
     const packageLink = generatePackageLink(packageManager, packageName);
     if (!packageLink) {
       return;
