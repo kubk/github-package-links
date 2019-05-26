@@ -9,15 +9,17 @@ A userscript that generates links for packages in dependency files like package.
 - `composer.json` (PHP)
 - `Gemfile` / `gems.rb` (Ruby)
 - `requirements.txt` (Python)
+- `Gopkg.toml` (Go)
 
 ### Requirements
 - [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en) for Google Chrome or [GreaseMonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) for Firefox
 
 ### Quick installation
-- Click [here](https://github.com/kubk/github-package-links/raw/build/dist/script.user.js)
+- Click [here](https://github.com/kubk/github-package-links/raw/build/script.user.js)
 
 ### Manual installation
-1. Build JavaScript bundle: `webpack -p --env.NODE_ENV=prod`
+You can inspect code and build extension manually from source:
+1. `npm run build:prod`
 2. Generate userscript: `cat userscript-header.txt dist/bundle.js > script.user.js`
 
 ### Browser support

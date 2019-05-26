@@ -1,33 +1,37 @@
-import { PackageManager } from './PackageManager';
+import { PackageManager } from './package-manager';
 
 export const generatePackageLink = (
   packageManager: PackageManager,
   packageName: string
 ): string | null => {
   switch (packageManager) {
-    case 'npm':
+    case PackageManager.Npm:
       const reservedKeys = [
         'devDependencies',
         'dependencies',
-        'peerDependencies'
+        'peerDependencies',
+        'optionalDependencies'
       ];
       if (reservedKeys.includes(packageName)) {
         return null;
       }
       return `https://www.npmjs.com/package/${packageName}`;
 
-    case 'composer':
+    case PackageManager.Composer:
       // Exclude PHP extensions such as 'ext-json'
       return packageName.includes('/')
         ? `https://packagist.org/packages/${packageName}`
         : null;
 
-    case 'rubyGems':
+    case PackageManager.RubyGems:
       return packageName.length > 0
         ? `https://rubygems.org/gems/${packageName}`
         : null;
 
-    case 'pip':
+    case PackageManager.Gopkg:
+      return packageName.length > 0 ? `https://${packageName}` : null;
+
+    case PackageManager.Pip:
       if (packageName.length < 1 || packageName.startsWith('git+')) {
         return null;
       }

@@ -8,6 +8,7 @@
     "no-default-export": true,
     "export-name": false,
     "quotemark": false,
+    "object-literal-sort-keys": false,
     "promise-function-async": false,
     "no-void-expression": false,
     "no-redundant-jsdoc": false,
