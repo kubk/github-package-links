@@ -18,7 +18,7 @@ A userscript that generates links for packages in dependency files like package.
 - Click [here](https://github.com/kubk/github-package-links/raw/build/script.user.js)
 
 ### Manual installation
-You can inspect code and build extension manually from source:
+You can inspect the code and build a userscript manually from source:
 1. `npm run build:prod`
 2. Generate userscript: `cat userscript-header.txt dist/bundle.js > script.user.js`
 
