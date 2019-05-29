@@ -11,9 +11,5 @@ script:
   - npm run static-analysis
   - npm run test
 
-cache:
-  directories:
-  - 'node_modules'
-
 notifications:
   email: false
