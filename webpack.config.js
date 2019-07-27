@@ -37,9 +37,5 @@ module.exports = env => {
         { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
       ]
     },
-    //
-    // externals: {
-    //   "$": "jquery"
-    // }
   };
 };
