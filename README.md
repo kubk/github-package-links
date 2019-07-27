@@ -20,7 +20,7 @@ A userscript that generates links for packages in dependency files like package.
 ### Manual installation
 You can inspect the code and build a userscript manually from source:
 1. `npm run build:prod`
-2. Generate userscript: `cat userscript-header.txt dist/bundle.js > script.user.js`
+2. Generate userscript: `cat userscript/userscript-header.txt dist/bundle.js > script.user.js`
 
 ### Browser support
 - Google Chrome 64+

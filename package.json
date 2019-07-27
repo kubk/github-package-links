@@ -29,7 +29,7 @@
     "lint": "./node_modules/.bin/tslint -t stylish --project tsconfig.json",
     "static-analysis": "./node_modules/.bin/tsc -p tsconfig.json --noEmit",
     "sa": "./node_modules/.bin/tsc -p tsconfig.json --noEmit",
-    "build-userscript": "cat userscript-header.txt dist/bundle.js > script.user.js && echo 'File userscript.js created'",
+    "build-userscript": "cat userscript/userscript-header.txt dist/bundle.js > script.user.js && echo 'File userscript.js created'",
     "test-watch": "jest --watch",
     "cs": "./node_modules/.bin/prettier src/**/*.ts --write --single-quote",
     "test": "jest"
