@@ -1,4 +1,4 @@
-import { PackageManager } from './package-manager';
+import { PackageManager } from './types';
 
 export const generatePackageLink = (
   packageManager: PackageManager,
@@ -19,14 +19,10 @@ export const generatePackageLink = (
 
     case PackageManager.Composer:
       // Exclude PHP extensions such as 'ext-json'
-      return packageName.includes('/')
-        ? `https://packagist.org/packages/${packageName}`
-        : null;
+      return packageName.includes('/') ? `https://packagist.org/packages/${packageName}` : null;
 
     case PackageManager.RubyGems:
-      return packageName.length > 0
-        ? `https://rubygems.org/gems/${packageName}`
-        : null;
+      return packageName.length > 0 ? `https://rubygems.org/gems/${packageName}` : null;
 
     case PackageManager.Gopkg:
       return packageName.length > 0 ? `https://${packageName}` : null;

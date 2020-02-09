@@ -1,4 +1,4 @@
-import { PackageManager } from './package-manager';
+import { PackageManager } from './types';
 
 export const findPackageManager = (pageUrl: string): PackageManager | null => {
   switch (true) {
