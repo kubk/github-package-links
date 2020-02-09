@@ -12,19 +12,18 @@ A userscript that generates links for packages in dependency files like package.
 - `Gopkg.toml` (Go)
 
 ### Requirements
-- [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en) for Google Chrome or [GreaseMonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) for Firefox
+- [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en) for Google Chrome or [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) for Firefox
 
 ### Quick installation
-- Click [here](https://github.com/kubk/github-package-links/raw/build/script.user.js)
+- Click [here](https://github.com/kubk/github-package-links/raw/build/script.user.js) if you have Tampermonkey or Greasemonkey installed.
 
 ### Manual installation
 You can inspect the code and build a userscript manually from source:
 1. `npm run build:prod`
 2. Generate userscript: `cat userscript/userscript-header.txt dist/bundle.js > script.user.js`
 
-### Browser support
-- Google Chrome 64+
-- Firefox 60+
+### Development
+1. `npm run build:dev && npm run build-userscript`
 
 ### Tests
 Run `npm run test`

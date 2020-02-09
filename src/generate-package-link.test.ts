@@ -1,5 +1,5 @@
 import { generatePackageLink } from './generate-package-link';
-import { PackageManager } from './package-manager';
+import { PackageManager } from './types';
 
 describe('generatePackageLink', () => {
   it('should generate NPM link', () => {
@@ -13,13 +13,8 @@ describe('generatePackageLink', () => {
   });
 
   it('should generate composer link', () => {
-    const link = generatePackageLink(
-      PackageManager.Composer,
-      'doctrine/doctrine-bundle'
-    );
-    expect(link).toBe(
-      'https://packagist.org/packages/doctrine/doctrine-bundle'
-    );
+    const link = generatePackageLink(PackageManager.Composer, 'doctrine/doctrine-bundle');
+    expect(link).toBe('https://packagist.org/packages/doctrine/doctrine-bundle');
   });
 
   it('should ignore PHP extensions and PHP version in composer file', () => {
@@ -31,10 +26,7 @@ describe('generatePackageLink', () => {
   });
 
   it('should generate Gopkg links', () => {
-    const link = generatePackageLink(
-      PackageManager.Gopkg,
-      'github.com/prometheus/client_golang'
-    );
+    const link = generatePackageLink(PackageManager.Gopkg, 'github.com/prometheus/client_golang');
     expect(link).toBe('https://github.com/prometheus/client_golang');
   });
 

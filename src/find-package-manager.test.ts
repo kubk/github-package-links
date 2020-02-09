@@ -1,5 +1,5 @@
 import { findPackageManager } from './find-package-manager';
-import { PackageManager } from './package-manager';
+import { PackageManager } from './types';
 
 describe('findPackageManager', () => {
   it('should ignore non-package file', () => {
@@ -31,9 +31,7 @@ describe('findPackageManager', () => {
   });
 
   it('should detect python dependency files', () => {
-    const pip = findPackageManager(
-      'https://github.com/ranger/ranger/blob/master/requirements.txt'
-    );
+    const pip = findPackageManager('https://github.com/ranger/ranger/blob/master/requirements.txt');
     expect(pip).toBe(PackageManager.Pip);
 
     const pipDev = findPackageManager(

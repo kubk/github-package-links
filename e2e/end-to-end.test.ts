@@ -1,6 +1,6 @@
 import { JSDOM } from 'jsdom';
 import * as fs from 'fs';
-import { PackageManager } from '../src/package-manager';
+import { PackageManager } from '../src/types';
 import { replaceDependencies } from '../src/replace-dependencies';
 import { generatePackageLink } from '../src/generate-package-link';
 
@@ -137,7 +137,7 @@ const getHtmlFileNode = (path: string) => {
   return fileNode;
 };
 
-describe('DependencyReplacer', () => {
+describe('replace dependencies', () => {
   testCases.forEach(
     ({
       packageManagerName,
