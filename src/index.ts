@@ -2,8 +2,7 @@ import { replaceDependencies } from './replace-dependencies';
 import { waitForCondition } from './wait-for-condition';
 
 const getGithubFileTabElement = () => {
-  const selector = '.highlight.tab-size';
-  return document.querySelector(selector);
+  return document.querySelector('.highlight.tab-size');
 };
 
 const file = getGithubFileTabElement();
@@ -12,23 +11,10 @@ if (file) {
 }
 
 document.body.addEventListener('click', event => {
-  const target = event.target as HTMLElement | null;
-  if (!target) {
-    return;
-  }
-  if (target.classList.contains('js-navigation-open')) {
+  const target = event.target;
+  if (target && target instanceof HTMLElement && target.classList.contains('js-navigation-open')) {
     waitForCondition(getGithubFileTabElement, element => {
       replaceDependencies(element, window.location.href);
-    });
-  }
-  const octotreeElement = target.closest('a[data-download-url]');
-  if (octotreeElement instanceof HTMLAnchorElement && octotreeElement.dataset) {
-    const { downloadUrl } = octotreeElement.dataset;
-    if (!downloadUrl) {
-      return;
-    }
-    waitForCondition(getGithubFileTabElement, element => {
-      replaceDependencies(element, downloadUrl);
     });
   }
 });
