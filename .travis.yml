@@ -10,7 +10,7 @@ script:
   - npm run lint
   - npm run sa
   - npm run test
-  - npm run build:production
+  - npm run build:prod
   - npm run build-userscript
 
 deploy:
@@ -18,8 +18,9 @@ deploy:
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
   keep_history: true
+  target_branch: build
   on:
-    branch: build
+    branch: master
 
 notifications:
   email: false
