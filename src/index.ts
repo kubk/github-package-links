@@ -1,16 +1,19 @@
 import { replaceDependencies } from './replace-dependencies';
-import { waitForElement } from './wait-for-element';
+import { waitForCondition } from './wait-for-condition';
 
-const packageSelector = '.highlight.tab-size';
-const file = document.querySelector(packageSelector);
+const getGithubFileTabElement = () => {
+  return document.querySelector('.highlight.tab-size');
+};
+
+const file = getGithubFileTabElement();
 if (file) {
   replaceDependencies(file, window.location.href);
 }
 
 document.body.addEventListener('click', event => {
-  const target = event.target as HTMLElement | null;
-  if (target && target.classList.contains('js-navigation-open')) {
-    waitForElement(packageSelector, element => {
+  const target = event.target;
+  if (target && target instanceof HTMLElement && target.classList.contains('js-navigation-open')) {
+    waitForCondition(getGithubFileTabElement, element => {
       replaceDependencies(element, window.location.href);
     });
   }

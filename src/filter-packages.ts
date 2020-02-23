@@ -1,9 +1,6 @@
-import { PackageManager } from './package-manager';
+import { PackageManager } from './types';
 
-export const filterPackages = (
-  packageManager: PackageManager,
-  fileNode: Element
-): Element[] => {
+export const filterPackages = (packageManager: PackageManager, fileNode: Element): Element[] => {
   switch (packageManager) {
     case PackageManager.Composer:
       const composerRows = Array.from<Element>(fileNode.querySelectorAll('tr'));
@@ -22,22 +19,22 @@ export const filterPackages = (
         return elements;
       }, []);
     case PackageManager.RubyGems:
-      return Array.from(fileNode.querySelectorAll('tr td.js-file-line')).filter(
-        line => {
-          return (
-            line.textContent &&
-            line.textContent.includes('gem ') &&
-            !line.textContent.includes('#')
-          );
+      return Array.from(fileNode.querySelectorAll('tr td.js-file-line')).filter(line => {
+        if (!line.textContent) {
+          return false;
         }
-      );
+        const isGemDeclaration = line.textContent.includes('gem ');
+        const isComment = line.textContent.includes('#');
+        return isGemDeclaration && !isComment;
+      });
     case PackageManager.Gopkg:
       return Array.from(fileNode.querySelectorAll('tr')).filter(line => {
-        return (
-          line.textContent &&
-          line.textContent.includes('name = "github.com/') &&
-          !line.textContent.includes('#')
-        );
+        if (!line.textContent) {
+          return false;
+        }
+        const isPackageDeclaration = line.textContent.includes('name = "github.com/');
+        const isComment = line.textContent.includes('#');
+        return isPackageDeclaration && !isComment;
       });
     case PackageManager.Pip:
       return Array.from(fileNode.querySelectorAll('tr'));

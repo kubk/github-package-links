@@ -1,4 +1,4 @@
-import { PackageManager } from './package-manager';
+import { PackageManager } from './types';
 
 export const findPackageManager = (pageUrl: string): PackageManager | null => {
   switch (true) {
@@ -8,7 +8,6 @@ export const findPackageManager = (pageUrl: string): PackageManager | null => {
       return PackageManager.Gopkg;
     case pageUrl.endsWith('package.json') || pageUrl.endsWith('bower.json'):
       return PackageManager.Npm;
-    // Match requirements.dev.txt, requirements.test.txt
     case /requirements.*txt$/.test(pageUrl):
       return PackageManager.Pip;
     case pageUrl.endsWith('composer.json'):

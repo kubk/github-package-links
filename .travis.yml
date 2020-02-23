@@ -8,12 +8,19 @@ before_script:
 
 script:
   - npm run lint
-  - npm run static-analysis
+  - npm run sa
   - npm run test
+  - npm run build:prod
+  - npm run build-userscript
 
-cache:
-  directories:
-  - 'node_modules'
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  keep_history: true
+  target_branch: build
+  on:
+    branch: master
 
 notifications:
   email: false
