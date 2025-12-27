@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Static analysis
+        run: npm run sa
+
+      - name: Test
+        run: npm run test
+
+      - name: Build
+        run: npm run build:prod
+
+      - name: Build userscript
+        run: npm run build-userscript
+
+      - name: Prepare deployment
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: |
+          mkdir .deploy
+          git archive HEAD | tar -x -C .deploy
+          cp script.user.js .deploy/script.user.js
+
+      - name: Deploy to build branch
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: build
+          publish_dir: ./.deploy

@@ -19,7 +19,8 @@ module.exports = env => {
     },
     mode: isProd ? "production" : "development",
     optimization: {
-      minimize: isProd
+      minimize: isProd,
+      minimizer: isProd ? [new UglifyJsPlugin({ extractComments: true })] : []
     },
     devtool: isProd ? false : 'source-map',
     plugins: isProd
@@ -28,8 +29,7 @@ module.exports = env => {
             test: /\.js$/,
             header: '(function () { "use strict";\n',
             footer: '\n})();'
-          }),
-          new UglifyJsPlugin({ extractComments: true })
+          })
         ]
       : [],
     resolve: {
@@ -37,7 +37,7 @@ module.exports = env => {
     },
     module: {
       rules: [
-        { test: /\.ts?$/, loader: 'awesome-typescript-loader' },
+        { test: /\.ts?$/, loader: 'ts-loader' },
         { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' }
       ]
     }
